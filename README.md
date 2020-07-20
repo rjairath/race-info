@@ -3,4 +3,6 @@ To run the project locally, run:
 
 ### `npm install`
 
-### `npm start`
+followed by
+
+### `npm run start`
