@@ -6,6 +6,7 @@ import {
   InputGroupButtonDropdown,
   Input,
   Button,
+  Alert,
 } from "reactstrap";
 import { getGameSchedule } from "../actions/searchActions";
 import { clearErrors } from "../actions/errorActions";
@@ -19,6 +20,7 @@ export class SearchInput extends Component {
   static propTypes = {
     getGameSchedule: PropTypes.func.isRequired,
     clearErrors: PropTypes.func.isRequired,
+    error: PropTypes.object.isRequired,
   };
 
   onChange = (e) => {
@@ -45,9 +47,21 @@ export class SearchInput extends Component {
             <Button onClick={this.onSubmit}>Search</Button>
           </InputGroupAddon>
         </InputGroup>
+
+        {this.props.error.msg ? (
+          <Alert color="danger" className="mt-3">
+            {this.props.error.msg}
+          </Alert>
+        ) : null}
       </div>
     );
   }
 }
 
-export default connect(null, { getGameSchedule, clearErrors })(SearchInput);
+const mapStateToProps = (state) => ({
+  error: state.error,
+});
+
+export default connect(mapStateToProps, { getGameSchedule, clearErrors })(
+  SearchInput
+);

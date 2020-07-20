@@ -39,6 +39,13 @@ export default function (state = initialState, action) {
         loading: false,
         gameData: action.payload,
       };
+    case GAME_SCHEDULE_ERRORS:
+      return {
+        ...state,
+        loading: false,
+        gameSchedule: {},
+        gameData: {},
+      };
     default:
       return state;
   }
